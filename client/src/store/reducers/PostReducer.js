@@ -10,7 +10,8 @@ const PostReducer = (state = iState, action) => {
     case POST_LOADING_TYPE:
       return { ...state, postsLoading: action.payload }
     case GET_POSTS:
-      return { ...state, posts: action.payload }
+      state.posts = new Array(...action.payload)
+      return { ...state }
     default:
       return { ...state }
   }

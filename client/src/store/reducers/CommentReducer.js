@@ -1,4 +1,4 @@
-const { GET_COMMENTS } = require('../types')
+const { GET_COMMENTS, POST_COMMENT } = require('../types')
 
 const iState = {
   comments: []
@@ -7,7 +7,11 @@ const iState = {
 const CommentReducer = (state = iState, action) => {
   switch (action.type) {
     case GET_COMMENTS:
-      return { ...state, comments: action.payload }
+      state.comments = new Array(...action.payload)
+      return { ...state }
+    case POST_COMMENT:
+      state.comments.push(action.payload)
+      return { ...state }
     default:
       return { ...state }
   }
